@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch Case Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calc-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: center;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        input, select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        input { width: 40%; }
+        select { width: 20%; cursor: pointer; }
+        button {
+            width: 100%;
+            background-color: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background-color: #a29bfe; }
+        #calcResult {
+            margin-top: 20px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #2d3436;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calc-card">
+        <h2>Simple Calculator</h2>
+        <div class="input-group">
+            <input type="number" id="num1" placeholder="Num 1">
+            <select id="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">×</option>
+                <option value="/">÷</option>
+            </select>
+            <input type="number" id="num2" placeholder="Num 2">
+        </div>
+        
+        <button onclick="calculate()">Calculate</button>
+        
+        <div id="calcResult">Result: --</div>
+    </div>
+
+    <script>
+        function calculate() {
+            const n1 = parseFloat(document.getElementById('num1').value);
+            const n2 = parseFloat(document.getElementById('num2').value);
+            const op = document.getElementById('operator').value;
+            const display = document.getElementById('calcResult');
+
+            if (isNaN(n1) || isNaN(n2)) {
+                display.innerText = "Error: Enter numbers";
+                return;
+            }
+
+            let result;
+
+            // Using switch statement for logic
+            switch (op) {
+                case '+':
+                    result = n1 + n2;
+                    break;
+                case '-':
+                    result = n1 - n2;
+                    break;
+                case '*':
+                    result = n1 * n2;
+                    break;
+                case '/':
+                    // Handle division by zero
+                    result = (n2 !== 0) ? (n1 / n2) : "Cannot divide by zero";
+                    break;
+                default:
+                    result = "Invalid Operator";
+            }
+
+            display.innerText = "Result: " + result;
+        }
+    </script>
+
+</body>
+</html>

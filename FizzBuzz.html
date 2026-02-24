@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FizzBuzz Script</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdfcf0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .fizz-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            width: 350px;
+            text-align: center;
+            border: 2px solid #f1c40f;
+        }
+        input {
+            width: 80%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+        button {
+            background-color: #f1c40f;
+            color: #333;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover { background-color: #f39c12; }
+        #fizzResult {
+            margin-top: 25px;
+            font-size: 2rem;
+            font-weight: 800;
+            min-height: 50px;
+        }
+        .fizz { color: #e67e22; }
+        .buzz { color: #9b59b6; }
+        .fizzbuzz { color: #2ecc71; text-transform: uppercase; letter-spacing: 2px; }
+        .none { color: #bdc3c7; }
+    </style>
+</head>
+<body>
+
+    <div class="fizz-card">
+        <h2>FizzBuzz Logic</h2>
+        <p>Enter a number to test it:</p>
+        <input type="number" id="userInput" placeholder="Try 15, 9, or 10">
+        <button onclick="runFizzBuzz()">Check Number</button>
+        
+        <div id="fizzResult"></div>
+    </div>
+
+    <script>
+        function runFizzBuzz() {
+            const num = parseInt(document.getElementById('userInput').value);
+            const display = document.getElementById('fizzResult');
+
+            if (isNaN(num)) {
+                display.innerText = "??";
+                return;
+            }
+
+            // The order is critical here!
+            // We check for both 3 and 5 first.
+            if (num % 3 === 0 && num % 5 === 0) {
+                display.innerText = "FizzBuzz";
+                display.className = "fizzbuzz";
+            } 
+            else if (num % 3 === 0) {
+                display.innerText = "Fizz";
+                display.className = "fizz";
+            } 
+            else if (num % 5 === 0) {
+                display.innerText = "Buzz";
+                display.className = "buzz";
+            } 
+            else {
+                display.innerText = num;
+                display.className = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>

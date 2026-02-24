@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Pricing System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .ticket-box {
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+            border-top: 5px solid #2ecc71;
+        }
+        h2 { color: #34495e; margin-bottom: 20px; }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #dcdde1;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background-color: #27ae60; }
+        #priceDisplay {
+            margin-top: 25px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .price-tag {
+            color: #2ecc71;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ticket-box">
+        <h2>Cinema Tickets</h2>
+        <p>Please enter your age:</p>
+        <input type="number" id="ageInput" placeholder="Age" min="0">
+        <button onclick="calculatePrice()">Calculate Price</button>
+        
+        <div id="priceDisplay"></div>
+    </div>
+
+    <script>
+        function calculatePrice() {
+            const age = parseInt(document.getElementById('ageInput').value);
+            const display = document.getElementById('priceDisplay');
+
+            if (isNaN(age) || age < 0) {
+                display.innerHTML = "<span style='color:red'>Please enter a valid age.</span>";
+                return;
+            }
+
+            let price = 0;
+
+            // Pricing Logic using Else If
+            if (age < 12) {
+                price = 5;
+            } else if (age >= 12 && age <= 17) {
+                price = 10;
+            } else if (age >= 18 && age <= 59) {
+                price = 20;
+            } else {
+                // This covers 60+
+                price = 15;
+            }
+
+            display.innerHTML = `Ticket Price: <br><span class="price-tag">$${price}</span>`;
+        }
+    </script>
+
+</body>
+</html>

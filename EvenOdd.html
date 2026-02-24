@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even Number Checker</title>
+</head>
+<body>
+    <h1>Check if a number is even</h1>
+
+    <label for="numberInput">Enter an integer:</label>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button onclick="checkNumber()">Check</button>
+
+    <p id="resultArea"></p>
+
+    <script>
+        // Function to check if a number is even
+        function isEven(number) {
+            // The modulo operator (%) returns the remainder of a division.
+            // If the remainder when divided by 2 is 0, the number is even.
+            return number % 2 === 0;
+        }
+
+        // Function to handle user input and display the result
+        function checkNumber() {
+            // Get the value from the input field and convert it to an integer.
+            const userInput = document.getElementById("numberInput").value;
+            const number = parseInt(userInput, 10);
+            const resultArea = document.getElementById("resultArea");
+
+            // Check if the input is a valid integer
+            if (!isNaN(number) && userInput !== "") {
+                const evenStatus = isEven(number);
+                if (evenStatus) {
+                    resultArea.textContent = `${number} is an even number.`;
+                } else {
+                    resultArea.textContent = `${number} is an odd number.`;
+                }
+            } else {
+                resultArea.textContent = "Please enter a valid integer.";
+            }
+        }
+    </script>
+</body>
+</html>

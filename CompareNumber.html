@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integer Comparison Tool</title>
+    <style>
+        /* CSS for Layout and Styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f7f6;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+            min-height: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Compare Numbers</h2>
+        <input type="number" id="num1" placeholder="Enter first integer">
+        <input type="number" id="num2" placeholder="Enter second integer">
+        <br>
+        <button onclick="compareNumbers()">Compare</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // JavaScript Logic
+        function compareNumbers() {
+            // Get values from inputs and convert to Integers
+            const val1 = parseInt(document.getElementById('num1').value);
+            const val2 = parseInt(document.getElementById('num2').value);
+            const display = document.getElementById('result');
+
+            // Validation: Check if both inputs are valid numbers
+            if (isNaN(val1) || isNaN(val2)) {
+                display.innerText = "Please enter both numbers.";
+                display.style.color = "red";
+                return;
+            }
+
+            display.style.color = "#333"; // Reset color
+
+            // Comparison Logic
+            if (val1 > val2) {
+                display.innerText = val1 + " is the larger number.";
+            } else if (val2 > val1) {
+                display.innerText = val2 + " is the larger number.";
+            } else {
+                display.innerText = "Both numbers are equal.";
+            }
+        }
+    </script>
+
+</body>
+</html>

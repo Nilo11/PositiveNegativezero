@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Advice Tool</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f9ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .weather-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: center;
+        }
+        select, input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            background-color: #ff9f43;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+        button:hover {
+            background-color: #ee5253;
+            transform: translateY(-2px);
+        }
+        #adviceBox {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            min-height: 1.5em;
+        }
+        .sun-alert { background-color: #fff3e0; color: #e67e22; }
+        .sun-ok { background-color: #e8f5e9; color: #2ecc71; }
+        .rain-msg { background-color: #e3f2fd; color: #3498db; }
+    </style>
+</head>
+<body>
+
+    <div class="weather-card">
+        <h2>Weather Advisor</h2>
+        
+        <label for="weatherSelect">How is the sky?</label>
+        <select id="weatherSelect">
+            <option value="Sunny">Sunny</option>
+            <option value="Rainy">Rainy</option>
+        </select>
+
+        <label for="tempInput">Temperature (°C)</label>
+        <input type="number" id="tempInput" placeholder="Enter Temp" value="25">
+
+        <button onclick="getAdvice()">Get Advice</button>
+        
+        <div id="adviceBox"></div>
+    </div>
+
+    <script>
+        function getAdvice() {
+            const weather = document.getElementById('weatherSelect').value;
+            const temp = parseFloat(document.getElementById('tempInput').value);
+            const adviceBox = document.getElementById('adviceBox');
+
+            let message = "";
+            let styleClass = "";
+
+            // Nested Logic
+            if (weather === "Sunny") {
+                if (temp > 30) {
+                    message = "☀️ Wear sunscreen!";
+                    styleClass = "sun-alert";
+                } else {
+                    message = "😎 Enjoy the day!";
+                    styleClass = "sun-ok";
+                }
+            } else if (weather === "Rainy") {
+                message = "☔ Bring an umbrella.";
+                styleClass = "rain-msg";
+            }
+
+            // Update UI
+            adviceBox.innerText = message;
+            adviceBox.className = styleClass;
+        }
+    </script>
+
+</body>
+</html>

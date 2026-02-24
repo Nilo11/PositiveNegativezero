@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e9ecef;
+        }
+        .card {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+        }
+        h2 { color: #2d3436; }
+        input {
+            width: 80%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #dfe6e9;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            outline: none;
+        }
+        input:focus { border-color: #0984e3; }
+        button {
+            background-color: #0984e3;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        button:hover { background-color: #74b9ff; }
+        #gradeResult {
+            margin-top: 25px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2d3436;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Grade Calculator</h2>
+        <input type="number" id="scoreInput" placeholder="Enter score (0-100)">
+        <br>
+        <button onclick="calculateGrade()">Calculate Grade</button>
+        
+        <div id="gradeResult"></div>
+    </div>
+
+    <script>
+        function calculateGrade() {
+            // Get the input value
+            const score = parseFloat(document.getElementById('scoreInput').value);
+            const resultDisplay = document.getElementById('gradeResult');
+
+            // Validation: Ensure input is a number and within range
+            if (isNaN(score)) {
+                resultDisplay.innerText = "Please enter a valid score.";
+                resultDisplay.style.color = "red";
+                return;
+            }
+
+            let grade = "";
+            let color = "";
+
+            // The 'else if' logic chain
+            if (score >= 90) {
+                grade = "A";
+                color = "#27ae60"; // Green
+            } else if (score >= 80) {
+                grade = "B";
+                color = "#2980b9"; // Blue
+            } else if (score >= 70) {
+                grade = "C";
+                color = "#f39c12"; // Orange
+            } else {
+                grade = "F";
+                color = "#c0392b"; // Red
+            }
+
+            // Displaying the result
+            resultDisplay.style.color = color;
+            resultDisplay.innerText = " Grade: " + grade;
+        }
+    </script>
+
+</body>
+</html>
